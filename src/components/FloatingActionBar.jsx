@@ -61,39 +61,39 @@ export default function FloatingActionBar({ onSaveContact, onShowQR }) {
           transition={{ type: 'spring', stiffness: 260, damping: 22, delay: 0.1 }}
         >
           <div className="fab-inner">
-            {actions.map(({ id, label, Icon, href, color, isLink, onClick, primary }) =>
-              isLink ? (
-                <motion.a
-                  key={id}
-                  id={id}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="fab-btn"
-                  aria-label={label}
-                  style={{ '--fab-color': color }}
-                  whileHover={{ scale: 1.08, y: -3 }}
-                  whileTap={{ scale: 0.92 }}
-                >
-                  <span className="fab-icon"><Icon size={20} strokeWidth={2} /></span>
-                  <span className="fab-label">{label}</span>
-                </motion.a>
-              ) : (
-                <motion.button
-                  key={id}
-                  id={id}
-                  className={`fab-btn ${primary ? 'fab-btn--primary' : ''}`}
-                  aria-label={label}
-                  style={{ '--fab-color': color }}
-                  onClick={onClick}
-                  whileHover={{ scale: 1.08, y: -3 }}
-                  whileTap={{ scale: 0.92 }}
-                >
-                  <span className="fab-icon"><Icon size={20} strokeWidth={2} /></span>
-                  <span className="fab-label">{primary ? 'Save Contact' : label}</span>
-                </motion.button>
-              )
-            )}
+            {actions.map(({ id, label, Icon, href, color, isLink, onClick, primary }) => (
+              <div key={id} className="fab-item">
+                {isLink ? (
+                  <motion.a
+                    id={id}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="fab-btn"
+                    aria-label={label}
+                    style={{ '--fab-color': color }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <span className="fab-icon"><Icon size={20} strokeWidth={2} /></span>
+                    <span className="fab-label">{label}</span>
+                  </motion.a>
+                ) : (
+                  <motion.button
+                    id={id}
+                    className={`fab-btn ${primary ? 'fab-btn--primary' : ''}`}
+                    aria-label={label}
+                    style={{ '--fab-color': color }}
+                    onClick={onClick}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <span className="fab-icon"><Icon size={20} strokeWidth={2} /></span>
+                    <span className="fab-label">{label}</span>
+                  </motion.button>
+                )}
+              </div>
+            ))}
           </div>
         </motion.nav>
       )}
