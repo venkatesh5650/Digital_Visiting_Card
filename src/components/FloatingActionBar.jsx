@@ -31,7 +31,7 @@ export default function FloatingActionBar({ onSaveContact, onShowQR }) {
     },
     {
       id: 'fab-save',
-      label: 'Save Contact',
+      label: 'Save',
       Icon: Download,
       color: '#6366f1',
       isLink: false,
@@ -40,7 +40,7 @@ export default function FloatingActionBar({ onSaveContact, onShowQR }) {
     },
     {
       id: 'fab-qr',
-      label: 'Share QR',
+      label: 'QR',
       Icon: QrCode,
       color: '#10b981',
       isLink: false,
@@ -75,7 +75,7 @@ export default function FloatingActionBar({ onSaveContact, onShowQR }) {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <span className="fab-icon"><Icon size={20} strokeWidth={2} /></span>
+                    <span className="fab-icon"><Icon size={18} strokeWidth={2} /></span>
                     <span className="fab-label">{label}</span>
                   </motion.a>
                 ) : (
@@ -88,7 +88,7 @@ export default function FloatingActionBar({ onSaveContact, onShowQR }) {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <span className="fab-icon"><Icon size={20} strokeWidth={2} /></span>
+                    <span className="fab-icon"><Icon size={18} strokeWidth={2} /></span>
                     <span className="fab-label">{label}</span>
                   </motion.button>
                 )}
