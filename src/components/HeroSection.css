@@ -14,16 +14,17 @@
 /* ---- Banner ---- */
 .hero-banner {
   width: 100%;
-  height: 240px;          /* Taller so full company branding row is visible */
+  aspect-ratio: 16 / 10;
   position: relative;
   overflow: hidden;
+  background-color: #f6f8fb; /* Match the bright gradient edges of the original image */
 }
 
 .hero-cover-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center top; /* Show the top of the image (logo + company name row) */
+  object-fit: contain; /* Guarantees the full logo row is visible, zero cropping */
+  object-position: center top;
 }
 
 /* Dark scrim at the bottom so the avatar floats cleanly off the image */
