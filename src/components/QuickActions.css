@@ -17,7 +17,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  padding: 1rem 0.5rem;
+  padding: 1rem 0.25rem;
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
@@ -28,6 +28,8 @@
   transition: var(--transition-smooth);
   position: relative;
   overflow: hidden;
+  min-width: 0;
+  width: 100%;
 }
 
 /* Sheen hover effect */
@@ -77,12 +79,15 @@
 }
 
 .quick-action-label {
-  font-size: 0.72rem;
+  font-size: 0.65rem;
   font-weight: 500;
   color: var(--text-secondary);
   letter-spacing: 0.3px;
   text-transform: uppercase;
   transition: color 0.2s ease;
+  text-align: center;
+  line-height: 1.1;
+  word-break: break-word;
 }
 
 .quick-action-btn:hover .quick-action-label {
