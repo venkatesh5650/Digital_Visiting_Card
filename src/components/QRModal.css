@@ -1,0 +1,266 @@
+/* ========================
+   QR Code Modal — Premium
+   ======================== */
+
+.qr-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+}
+
+.qr-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(92vw, 370px);
+  z-index: 201;
+  background: linear-gradient(160deg, #131e36 0%, #0f172a 60%, #091020 100%);
+  border: 1px solid rgba(20, 184, 166, 0.22);
+  border-radius: 2rem;
+  padding: 1.5rem 1.5rem 1.35rem;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.04) inset,
+    0 30px 70px rgba(0, 0, 0, 0.7),
+    0 0 100px rgba(20, 184, 166, 0.06);
+  overflow: hidden;
+}
+
+/* Subtle ambient teal orb behind QR */
+.qr-modal::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(20,184,166,0.12), transparent 70%);
+  pointer-events: none;
+}
+
+/* ---- Close ---- */
+.qr-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+.qr-close-btn:hover { background: rgba(255,255,255,0.12); color: var(--text-primary); }
+
+/* ---- Header (Avatar + Identity) ---- */
+.qr-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-right: 2.2rem; /* avoid close btn overlap */
+  margin-bottom: 0.1rem;
+}
+
+.qr-avatar {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #14b8a6, #6366f1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+  box-shadow: 0 0 0 3px rgba(20,184,166,0.3);
+}
+
+.qr-header-text {
+  flex: 1;
+}
+
+.qr-eyebrow {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--teal-accent);
+  margin-bottom: 0.15rem;
+}
+
+.qr-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.qr-title-role {
+  font-size: 0.74rem;
+  color: var(--teal-accent);
+  font-weight: 500;
+  margin-top: 0.1rem;
+}
+
+.qr-company {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  margin-top: 0.05rem;
+}
+
+/* ---- Divider ---- */
+.qr-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(20,184,166,0.25), transparent);
+  margin: 1rem 0;
+}
+
+/* ---- QR Code wrapper ---- */
+.qr-code-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  margin: 0 auto 0.5rem;
+  width: fit-content;
+}
+
+.qr-code-inner {
+  background: #ffffff;
+  border-radius: 1.1rem;
+  padding: 1.1rem;
+  border: 4px solid rgba(255,255,255,0.1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* Animated scanning line */
+.qr-scan-line {
+  position: absolute;
+  left: 1.1rem;
+  right: 1.1rem;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--teal-accent), transparent);
+  border-radius: 9999px;
+  animation: scan-sweep 2.4s ease-in-out infinite;
+  z-index: 2;
+  pointer-events: none;
+}
+
+@keyframes scan-sweep {
+  0%   { top: 1.1rem; opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { top: calc(100% - 1.1rem); opacity: 0; }
+}
+
+/* Teal corner brackets */
+.qr-corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--teal-accent);
+  border-style: solid;
+  opacity: 0.9;
+}
+.qr-corner-tl { top: 0; left: 0; border-width: 2.5px 0 0 2.5px; border-radius: 5px 0 0 0; }
+.qr-corner-tr { top: 0; right: 0; border-width: 2.5px 2.5px 0 0; border-radius: 0 5px 0 0; }
+.qr-corner-bl { bottom: 0; left: 0; border-width: 0 0 2.5px 2.5px; border-radius: 0 0 0 5px; }
+.qr-corner-br { bottom: 0; right: 0; border-width: 0 2.5px 2.5px 0; border-radius: 0 0 5px 0; }
+
+.qr-hint {
+  text-align: center;
+  font-size: 0.65rem;
+  color: rgba(148,163,184,0.55);
+  letter-spacing: 0.3px;
+  margin-bottom: 1rem;
+}
+
+/* ---- Contact Details ---- */
+.qr-contacts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+  margin-bottom: 1.1rem;
+}
+
+.qr-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.65rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 0.6rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  color: var(--text-secondary);
+}
+
+.qr-contact-item:hover {
+  background: rgba(20,184,166,0.08);
+  border-color: rgba(20,184,166,0.2);
+  color: var(--text-primary);
+}
+
+.qr-contact-item span {
+  font-size: 0.66rem;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.qr-contact-item svg {
+  color: var(--teal-accent);
+  flex-shrink: 0;
+}
+
+/* ---- Action Buttons ---- */
+.qr-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.qr-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.7rem 0.75rem;
+  border-radius: 0.8rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.05);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+.qr-action-btn:hover { background: rgba(255,255,255,0.09); }
+
+.qr-action-btn--primary {
+  background: linear-gradient(135deg, #14b8a6, #0d9488);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(20, 184, 166, 0.38);
+}
+.qr-action-btn--primary:hover {
+  background: linear-gradient(135deg, #2dd4bf, #14b8a6);
+  box-shadow: 0 6px 24px rgba(20, 184, 166, 0.55);
+}
